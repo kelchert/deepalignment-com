@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="theme-color" content="#1A2F44">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Resurface: Deep Alignment</title>
+<style>
+  :root {
+    --bg-main: #2C4E72;
+    --bg-deep: #1A2F44;
+    --bg-input: #0B2538;
+    --coach-bubble: #BED7F2;
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.5);
+    --accent-green: #5EC269;
+    --accent-teal: #6AD09D;
+    --divider: rgba(255, 255, 255, 0.08);
+    --card-bg: rgba(255, 255, 255, 0.06);
+    --card-border: rgba(255, 255, 255, 0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-main);
+    color: var(--text-primary);
+    font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', system-ui, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-header {
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+    background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-main) 100%);
+  }
+
+  .page-header img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 12px rgba(106, 208, 157, 0.3));
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.25rem;
+  }
+
+  .page-header .brand {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-teal);
+    margin-bottom: 0.5rem;
+  }
+
+  .last-updated {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 3rem;
+  }
+
+  .highlight-box {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .highlight-box.accent {
+    border-left: 3px solid var(--accent-teal);
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--accent-teal);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  ul {
+    margin: 0.5rem 0 1rem;
+    padding-left: 1.25rem;
+  }
+
+  li {
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+  }
+
+  li strong {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  a {
+    color: var(--accent-teal);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  a:hover {
+    color: var(--accent-green);
+    text-decoration: underline;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .two-col .col {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+
+  .two-col h3 {
+    margin-top: 0;
+  }
+
+  .contact-box {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .cta-box {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+  }
+
+  .cta-box p {
+    color: var(--text-primary);
+    font-weight: 400;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(106, 208, 157, 0.15);
+    border: 1px solid rgba(106, 208, 157, 0.3);
+    color: var(--accent-teal);
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: background 0.2s;
+  }
+
+  .back-link:hover {
+    background: rgba(106, 208, 157, 0.25);
+    text-decoration: none;
+  }
+
+  .footer-links {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--divider);
+  }
+
+  .footer-links a {
+    margin: 0 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .footer-links a:hover {
+    color: var(--accent-teal);
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 1rem 1.25rem 2rem; }
+    .two-col { grid-template-columns: 1fr; }
+    .footer-links a { display: block; margin: 0.5rem 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <img src="https://static.wixstatic.com/media/0f0d32_9262e41af4b948a79e77c2b34808c9e4~mv2.png" alt="Resurface orb">
+  <div class="brand">Resurface: Deep Alignment</div>
+  <h1>Privacy Policy</h1>
+  <div class="last-updated">Last Updated: July 18, 2025</div>
+</div>
+
+<div class="container">
+
+  <div class="highlight-box accent">
+    <p style="color: var(--text-primary); margin-bottom: 0;">Resurface is designed with your privacy in mind. No account required, no tracking, no data sales. Your emotional work stays yours.</p>
+  </div>
+
+  <h2>Information We Collect</h2>
+
+  <h3>Conversation Data</h3>
+  <ul>
+    <li><strong>What:</strong> Your messages, emotion selections, intensity ratings, and truth ratings</li>
+    <li><strong>Why:</strong> To provide personalized AI coaching responses</li>
+    <li><strong>How:</strong> Through your interactions with the app</li>
+  </ul>
+
+  <h3>No Account Required</h3>
+  <div class="highlight-box">
+    <ul style="margin: 0;">
+      <li>Resurface works without creating an account</li>
+      <li>No email, name, or personal identifiers collected</li>
+      <li>No tracking or analytics</li>
+    </ul>
+  </div>
+
+  <h2>How We Use Your Information</h2>
+
+  <h3>AI Processing</h3>
+  <ul>
+    <li>Your messages are sent to Anthropic's Claude API</li>
+    <li>Used solely to generate coaching responses</li>
+    <li>Anthropic processes data according to their privacy policy</li>
+    <li>No data is used for AI training without your consent</li>
+  </ul>
+
+  <h3>Local Storage</h3>
+  <ul>
+    <li>All conversations stored locally on <strong>your</strong> device</li>
+    <li>Never uploaded to our servers</li>
+    <li>You control when to save or delete conversations</li>
+    <li>Data remains on your device unless you explicitly share it</li>
+  </ul>
+
+  <h2>Data Sharing</h2>
+
+  <div class="two-col">
+    <div class="col">
+      <h3>We do NOT:</h3>
+      <ul style="margin-bottom: 0;">
+        <li>Sell your data</li>
+        <li>Share with advertisers</li>
+        <li>Upload to cloud servers</li>
+        <li>Track your usage</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>We ONLY:</h3>
+      <ul style="margin-bottom: 0;">
+        <li>Send conversation data to Anthropic for AI responses</li>
+        <li>Store data locally on your device</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Your Rights</h2>
+
+  <h3>Full Control</h3>
+  <ul>
+    <li>Delete any conversation anytime</li>
+    <li>Clear all data through iOS Settings</li>
+    <li>Export your conversations (coming soon)</li>
+    <li>No data persists after app deletion</li>
+  </ul>
+
+  <h3>Data Portability</h3>
+  <ul>
+    <li>Your conversations belong to you</li>
+    <li>Export features planned for future updates</li>
+  </ul>
+
+  <h2>Security</h2>
+
+  <h3>Secure API Communications</h3>
+  <ul>
+    <li>API requests routed through our secure proxy server</li>
+    <li>Your API key never exposed to your device</li>
+    <li>Proxy only forwards requests — no data storage</li>
+  </ul>
+
+  <h3>Data Protection</h3>
+  <ul>
+    <li>API communications use HTTPS encryption</li>
+    <li>No sensitive data stored in plain text</li>
+    <li>iOS sandboxing protects your local data</li>
+  </ul>
+
+  <h2>Children's Privacy</h2>
+  <p>Resurface is designed for users 17 and older. We do not knowingly collect information from children under 17.</p>
+
+  <h2>Changes to This Policy</h2>
+  <p>We'll notify you of any material changes through app updates. Continued use after changes indicates acceptance.</p>
+
+  <h2>Contact Us</h2>
+  <div class="contact-box">
+    <p style="margin-bottom: 0.5rem;">Questions about privacy? Reach out:</p>
+    <ul style="margin-bottom: 0;">
+      <li>Email: <a href="mailto:kelchert@mac.com">kelchert@mac.com</a></li>
+      <li>Website: <a href="https://www.deepalignment.com" target="_top">deepalignment.com</a></li>
+    </ul>
+  </div>
+
+  <h2>California Privacy Rights</h2>
+  <p>California residents have additional rights under CCPA including the right to know, delete, and opt-out of data sales (though we don't sell data).</p>
+
+  <h2>International Users</h2>
+  <p>By using Resurface, you consent to data processing in the United States where Anthropic's servers are located.</p>
+
+  <div class="cta-box">
+    <p><strong>By using Resurface, you agree to this privacy policy.</strong></p>
+    <a href="https://www.deepalignment.com" class="back-link" target="_top">← Back to Deep Alignment</a>
+  </div>
+
+  <div class="footer-links">
+    <a href="https://www.deepalignment.com" target="_top">Home</a>
+    <a href="https://www.deepalignment.com/support" target="_top">Support</a>
+    <a href="https://www.deepalignment.com/privacy-policy" target="_top">Privacy Policy</a>
+    <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank">Terms of Use (EULA)</a>
+  </div>
+</body>
+</html>

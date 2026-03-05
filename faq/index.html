@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="theme-color" content="#1A2F44">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — Resurface: Deep Alignment</title>
+<style>
+  :root {
+    --bg-main: #2C4E72;
+    --bg-deep: #1A2F44;
+    --bg-input: #0B2538;
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.5);
+    --accent-green: #5EC269;
+    --accent-teal: #6AD09D;
+    --divider: rgba(255, 255, 255, 0.08);
+    --card-bg: rgba(255, 255, 255, 0.06);
+    --card-border: rgba(255, 255, 255, 0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-main);
+    color: var(--text-primary);
+    font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', system-ui, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-header {
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+    background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-main) 100%);
+  }
+
+  .page-header img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 12px rgba(106, 208, 157, 0.3));
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.25rem;
+  }
+
+  .page-header .brand {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-teal);
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header .tagline {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 3rem;
+  }
+
+  .faq-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .faq-item:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+
+  .faq-question {
+    padding: 1.1rem 1.25rem;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    color: var(--text-primary);
+    transition: background 0.2s;
+  }
+
+  .faq-question:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .faq-toggle {
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--accent-teal);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
+
+  .faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 600px;
+  }
+
+  .faq-answer-inner {
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  .faq-answer p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+  }
+
+  a {
+    color: var(--accent-teal);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  a:hover {
+    color: var(--accent-green);
+    text-decoration: underline;
+  }
+
+  .back-container {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: rgba(106, 208, 157, 0.15);
+    border: 1px solid rgba(106, 208, 157, 0.3);
+    color: var(--accent-teal);
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: background 0.2s;
+  }
+
+  .back-link:hover {
+    background: rgba(106, 208, 157, 0.25);
+    text-decoration: none;
+  }
+
+  .footer-links {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--divider);
+  }
+
+  .footer-links a {
+    margin: 0 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .footer-links a:hover { color: var(--accent-teal); }
+
+  @media (max-width: 600px) {
+    .container { padding: 1rem 1.25rem 2rem; }
+    .faq-question { padding: 1rem; font-size: 0.9rem; }
+    .faq-answer-inner { padding: 0 1rem 1rem; }
+    .footer-links a { display: block; margin: 0.5rem 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <img src="https://static.wixstatic.com/media/0f0d32_9262e41af4b948a79e77c2b34808c9e4~mv2.png" alt="Resurface orb">
+  <div class="brand">Resurface: Deep Alignment</div>
+  <h1>Frequently Asked Questions</h1>
+  <div class="tagline">Everything you need to know about Resurface and the emotional guidance process</div>
+</div>
+
+<div class="container">
+
+  <div class="faq-item">
+    <div class="faq-question">
+      What exactly does Resurface do?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Resurface is your personal AI emotional coach. It offers eight coach-guided energy games based on the teachings of Abraham-Hicks, each designed to help you reach for slightly better-feeling thoughts — one at a time — until you find clarity, hope, or beyond. It's like having a wise friend who understands emotions and knows exactly how to help you feel better.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      Do I need to know about Abraham-Hicks to use this?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Not at all! The app teaches you the process as you use it. Whether you're familiar with Abraham-Hicks or have never heard of them, the emotional guidance principles work the same way. Think of it as emotional intelligence training with a proven 30+ year track record. You don't need to believe in Law of Attraction, or anything, for that matter — the practical techniques work regardless of your personal beliefs.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How is this different from other mood apps?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Most apps just track your mood or tell you to "think positive" or "be grateful." Resurface actively helps you shift your emotional state. Instead of logging that you feel frustrated, it guides you to find thoughts you actually believe that feel better. It's coaching, not just tracking. And it never asks you to make impossible jumps from sadness to joy.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How does the AI know what to say?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>The AI coach is specifically guided in Abraham-Hicks emotional guidance principles. It understands the 22-point emotional scale and knows which thoughts are accessible from each emotional state. It's like having a coach who's studied these methods for years and can guide you through the process with wisdom and patience.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How quickly will I see results?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>You will feel shifts within minutes of using the app. That's the beauty of the incremental approach — you're not trying to force huge emotional leaps. When you find a thought that feels even slightly better, you'll feel the relief immediately.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      This seems too simple or too good to be true.
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>It's subtle, but powerful. Just like the 1% better concept, the real power occurs over time. Regular incremental shifts yield palpable knowledge and experience of your own control over your emotions, your thoughts, your state, your being, and the ripple effects of all those as they reverberate out from you to everything you touch.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      Is this therapy or a replacement for therapy?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Resurface is an emotional guidance tool, not therapy. It's designed to help you navigate daily emotional challenges and develop better emotional habits. If you're dealing with serious mental health issues, trauma, or clinical depression, please continue working with qualified mental health professionals. Many users find Resurface works beautifully alongside therapy.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      "Law of Attraction" doesn't work.
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Perfect! Prove us wrong. You don't need to believe in Law of Attraction to benefit from better emotional management. The techniques are practical and results-oriented — if they help you feel better, that's all that matters. Think of it as emotional intelligence training rather than LOA, New Age, or spiritual. It just works.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How does the 22-point emotional scale work?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>All you need to know is that there are really just two emotions. One feels good, one feels bad. But if you are trying to feel better, it pays to get a little more specific! A list of emotion-words in front of you to pick from helps when feeling big emotions. You may not jump from anger to joy, but you can get to frustration. You may not want to stay there, but it's slightly better, and it may be all you have access to. Resurface's fully interactive scale shows you. You explore it until you can pinpoint where you are.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      What platforms is Resurface available on?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Resurface is available for iPhone and iPad on the <a href="https://apps.apple.com/app/id6748240318" target="_blank">App Store</a>. It works beautifully on both devices with a responsive design.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      How much does it cost?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Resurface includes a free emotional check-in and Segment Intending is always free. Additional processes are available through a subscription. Check the App Store for current pricing.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      Is my data private?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>Yes. All conversations are stored locally on your device. No account required, no tracking, no data sales. The only data sent externally is for AI processing, and it's not stored or associated with your identity. Your emotional work stays yours.</p>
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      What if I don't feel better after using it?
+      <span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer"><div class="faq-answer-inner">
+      <p>The process works when you're genuinely looking for relief. You don't have to make big leaps — just be willing to reach for a thought that feels slightly better. If Resurface isn't for you, you can request a refund through Apple at <a href="https://reportaproblem.apple.com" target="_blank">reportaproblem.apple.com</a>.</p>
+    </div></div>
+  </div>
+
+  <div class="back-container">
+    <a href="https://www.deepalignment.com" class="back-link" target="_top">← Back to Resurface Home</a>
+  </div>
+
+  <div class="footer-links">
+    <a href="https://www.deepalignment.com" target="_top">Home</a>
+    <a href="https://www.deepalignment.com/support" target="_top">Support</a>
+    <a href="https://www.deepalignment.com/privacy-policy" target="_top">Privacy Policy</a>
+    <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_top">Terms of Use (EULA)</a>
+  </div>
+
+</div>
+
+<script>
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+      const item = question.parentElement;
+      document.querySelectorAll('.faq-item').forEach(other => {
+        if (other !== item) other.classList.remove('active');
+      });
+      item.classList.toggle('active');
+    });
+  });
+</script>
+</body>
+</html>

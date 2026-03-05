@@ -1,0 +1,13 @@
+# Deep Alignment website - Netlify Configuration
+# IMPORTANT: email_obfuscation = false prevents Netlify from
+# replacing email addresses with /cdn-cgi/l/email-protection/ artifacts
+
+[build]
+  publish = "."
+
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = true
+  email_obfuscation = false

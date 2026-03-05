@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="theme-color" content="#1A2F44">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support — Resurface: Deep Alignment</title>
+<style>
+  :root {
+    --bg-main: #2C4E72;
+    --bg-deep: #1A2F44;
+    --bg-input: #0B2538;
+    --coach-bubble: #BED7F2;
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.5);
+    --accent-green: #5EC269;
+    --accent-teal: #6AD09D;
+    --divider: rgba(255, 255, 255, 0.08);
+    --card-bg: rgba(255, 255, 255, 0.06);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --warning-bg: rgba(237, 151, 79, 0.1);
+    --warning-border: rgba(237, 151, 79, 0.3);
+    --warning-text: #ED974F;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-main);
+    color: var(--text-primary);
+    font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', system-ui, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-header {
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+    background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-main) 100%);
+  }
+
+  .page-header img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 12px rgba(106, 208, 157, 0.3));
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.25rem;
+  }
+
+  .page-header .brand {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-teal);
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header .tagline {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 3rem;
+  }
+
+  .contact-box {
+    background: var(--card-bg);
+    border: 1px solid rgba(106, 208, 157, 0.25);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .contact-box h3 {
+    color: var(--accent-teal);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-box a {
+    color: var(--accent-teal);
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 400;
+  }
+
+  .contact-box a:hover { text-decoration: underline; }
+
+  .contact-box .note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+  }
+
+  .section {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--accent-teal);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h3:first-child { margin-top: 0; }
+
+  p {
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  ul, ol {
+    margin: 0.5rem 0 1rem;
+    padding-left: 1.25rem;
+  }
+
+  li {
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+  }
+
+  li strong {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  a {
+    color: var(--accent-teal);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  a:hover {
+    color: var(--accent-green);
+    text-decoration: underline;
+  }
+
+  .faq-item {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .faq-question {
+    font-weight: 500;
+    color: var(--accent-teal);
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+  }
+
+  .faq-answer {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+
+  .warning {
+    background: var(--warning-bg);
+    border: 1px solid var(--warning-border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .warning p, .warning strong {
+    color: var(--warning-text);
+    margin-bottom: 0;
+    font-size: 0.9rem;
+  }
+
+  .success-box {
+    background: rgba(94, 194, 105, 0.1);
+    border: 1px solid rgba(94, 194, 105, 0.25);
+    border-radius: 16px;
+    padding: 1.25rem;
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  .success-box p {
+    color: var(--accent-green);
+    margin-bottom: 0;
+  }
+
+  .success-box a {
+    color: var(--accent-green);
+    font-weight: 400;
+  }
+
+  .update-box {
+    background: rgba(106, 208, 157, 0.06);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .update-date {
+    font-weight: 500;
+    color: var(--accent-teal);
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  .update-box ul { margin-bottom: 0; }
+
+  .button {
+    display: inline-block;
+    padding: 0.6rem 1.25rem;
+    background: rgba(106, 208, 157, 0.15);
+    border: 1px solid rgba(106, 208, 157, 0.3);
+    color: var(--accent-teal);
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: background 0.2s;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .button:hover {
+    background: rgba(106, 208, 157, 0.25);
+    text-decoration: none;
+  }
+
+  .footer-links {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--divider);
+  }
+
+  .footer-links a {
+    margin: 0 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .footer-links a:hover { color: var(--accent-teal); }
+
+  @media (max-width: 600px) {
+    .container { padding: 1rem 1.25rem 2rem; }
+    .section { padding: 1.25rem; }
+    .footer-links a { display: block; margin: 0.5rem 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <img src="https://static.wixstatic.com/media/0f0d32_9262e41af4b948a79e77c2b34808c9e4~mv2.png" alt="Resurface orb">
+  <div class="brand">Resurface: Deep Alignment</div>
+  <h1>Support</h1>
+  <div class="tagline">Get help with your emotional guidance journey</div>
+</div>
+
+<div class="container">
+
+  <div class="contact-box">
+    <h3>Need Help?</h3>
+    <p style="margin-bottom: 0;">Contact us at: <a href="mailto:kelchert@mac.com">kelchert@mac.com</a></p>
+    <div class="note">We typically respond within 24–48 hours</div>
+  </div>
+
+  <div class="section">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-question">What is Resurface?</div>
+      <div class="faq-answer">Resurface is an AI-powered emotional guidance app based on Abraham-Hicks teachings. It helps you navigate your emotions from where you are to where you want to be, using the Emotional Guidance Scale (EGS) and personalized AI coaching.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How does Resurface work?</div>
+      <div class="faq-answer">Resurface offers eight coach-guided emotional processes based on Abraham-Hicks teachings. You start with how you're feeling right now, and the AI coach helps guide you gradually toward better-feeling thoughts. Everything is intuitive and guided — just open a process and follow along.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Is my data private?</div>
+      <div class="faq-answer">Yes! Your conversations are stored locally on your device. We don't have access to your personal conversations or emotional data. The only data sent externally is for AI processing, and it's not stored or associated with your identity.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Can I use Resurface offline?</div>
+      <div class="faq-answer">Yes, Resurface has offline support. You can write messages while offline (up to 10 messages), and they'll automatically send when you reconnect. However, you'll need an internet connection to receive AI responses.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How do I export or save my conversations?</div>
+      <div class="faq-answer">Conversation export is coming in a future update. Currently, your conversations are stored locally on your device. We recommend taking screenshots of important insights for now.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">What's the difference between Resurface and therapy?</div>
+      <div class="faq-answer">Resurface is NOT a replacement for professional mental health care. It's a personal growth tool for emotional exploration and finding better-feeling thoughts. If you're in crisis, please call 911 or 988 (Suicide &amp; Crisis Lifeline). Always consult professionals for medical or psychological needs.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Troubleshooting</h2>
+
+    <h3>Messages Not Sending</h3>
+    <ul>
+      <li>Check your internet connection</li>
+      <li>Look for the offline indicator in the app</li>
+      <li>Try closing and reopening the app</li>
+      <li>Ensure you have the latest version installed</li>
+    </ul>
+
+    <h3>App Crashes or Freezes</h3>
+    <ul>
+      <li>Force quit the app and restart</li>
+      <li>Check for iOS updates</li>
+      <li>Ensure you have at least 100MB free storage</li>
+      <li>Delete and reinstall the app if issues persist</li>
+    </ul>
+
+    <h3>AI Responses Seem Off</h3>
+    <ul>
+      <li>Be specific about your emotions and situation</li>
+      <li>Use the emotion scale to accurately indicate how you feel</li>
+      <li>Try rephrasing if the AI misunderstands</li>
+      <li>Remember the AI works best with authentic emotional expressions</li>
+    </ul>
+
+    <div class="warning">
+      <p><strong>Important:</strong> If you experience technical issues during an emotional crisis, please reach out to human support through traditional crisis resources.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>How-To Guides</h2>
+
+    <h3>Starting Your First Conversation</h3>
+    <ol>
+      <li>Open Resurface and read through the welcome message</li>
+      <li>Choose a process or start with a free emotional check-in</li>
+      <li>Describe your situation in your own words</li>
+      <li>Follow the AI coach's guidance to find better-feeling thoughts</li>
+      <li>Continue until you reach a more positive emotional state</li>
+    </ol>
+
+    <h3>Getting the Most from AI Coaching</h3>
+    <ul>
+      <li>Be specific about what's bothering you</li>
+      <li>Answer the coach's questions thoughtfully</li>
+      <li>Try the suggested better-feeling thoughts</li>
+      <li>Take your time — there's no rush</li>
+      <li>Complete the full conversation for best results</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>System Requirements</h2>
+
+    <h3>iOS Requirements</h3>
+    <ul>
+      <li><strong>iOS Version:</strong> 15.0 or later</li>
+      <li><strong>Devices:</strong> iPhone, iPad, iPod touch</li>
+      <li><strong>Storage:</strong> Approximately 50MB</li>
+      <li><strong>Internet:</strong> Required for AI responses</li>
+    </ul>
+
+    <h3>Supported Devices</h3>
+    <ul>
+      <li>iPhone 8 and later</li>
+      <li>iPad (6th generation) and later</li>
+      <li>iPad Air (3rd generation) and later</li>
+      <li>iPad Pro (all models)</li>
+      <li>iPod touch (7th generation)</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Updates &amp; Changelog</h2>
+
+    <div class="update-box">
+      <div class="update-date">Version 2.0 — February 2026</div>
+      <ul>
+        <li>Eight Abraham-Hicks processes in one unified app</li>
+        <li>New ProcessHub architecture</li>
+        <li>Traveling coach orb with animations</li>
+        <li>Segment Intending always free</li>
+      </ul>
+    </div>
+
+    <div class="update-box">
+      <div class="update-date">Version 1.0 — July 2025</div>
+      <ul>
+        <li>Initial release</li>
+        <li>Core conversation flow</li>
+        <li>Emotional Guidance Scale</li>
+        <li>AI coaching with Claude</li>
+      </ul>
+    </div>
+
+    <p style="margin-top: 0.75rem;">Check the App Store for the latest updates!</p>
+  </div>
+
+  <div class="section">
+    <h2>Refund Policy</h2>
+
+    <p>Resurface purchases are processed through the Apple App Store. As per Apple's policies:</p>
+    <ul>
+      <li>All sales are final</li>
+      <li>Refund requests must be submitted through Apple</li>
+      <li>Visit <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a> to request a refund</li>
+      <li>Apple typically allows refunds within 90 days of purchase</li>
+    </ul>
+    <p>If you're experiencing technical issues, please contact us first at <a href="mailto:kelchert@mac.com">kelchert@mac.com</a> — we're here to help!</p>
+  </div>
+
+  <div class="section">
+    <h2>Legal</h2>
+
+    <p style="margin-bottom: 1rem;">
+      <a href="https://www.deepalignment.com/privacy-policy" class="button" target="_top">Privacy Policy</a>
+      <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" class="button" target="_top">Terms of Use (EULA)</a>
+    </p>
+
+    <div class="warning">
+      <p><strong>Medical Disclaimer:</strong> Resurface is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.</p>
+    </div>
+  </div>
+
+  <div class="success-box">
+    <p><strong>Still need help?</strong> Email us at <a href="mailto:kelchert@mac.com">kelchert@mac.com</a> with your question, device type, and iOS version.</p>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <p class="footer-brand">Resurface: Deep Alignment</p>
+      <div class="footer-links">
+        <a href="https://www.deepalignment.com">Home</a>
+        <a href="https://www.deepalignment.com/support">Support</a>
+        <a href="https://www.deepalignment.com/privacy-policy">Privacy Policy</a>
+        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank">Terms of Use (EULA)</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
