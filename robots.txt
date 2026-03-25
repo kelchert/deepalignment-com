@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.deepalignment.com/sitemap.xml
