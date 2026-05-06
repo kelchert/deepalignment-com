@@ -360,9 +360,13 @@
     border: 1px solid var(--divider);
   }
 
-  .feature-icon {
+  .feature-card > *:first-child {
     font-size: 1.4rem;
     margin-bottom: 0.6rem;
+    min-height: 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
 
   .feature-card h3 {
@@ -577,7 +581,7 @@
       <p>A traveling orb coach meets you where you are and gently helps you reach for a better-feeling thought, one step at a time.</p>
     </div>
     <div class="feature-card">
-      <div style="width: 80%; margin: 0 auto 12px; text-align: center;">
+      <div style="width: 80%; margin: 0 auto; text-align: center;">
         <div style="height: 16px; border-radius: 0; background: linear-gradient(90deg, #3F0F0D, #8C2822, #DD524C, #ED974F, #F2C14B, #DFF8A7, #9FECB1, #5EC269);"></div>
         <div style="display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--text-muted); margin-top: 4px; padding: 0 2px;"><span>Fear</span><span>Joy</span></div>
       </div>
