@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="theme-color" content="#1A2F44">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide — Resurface: Deep Alignment</title>
+
+<!-- Canonical -->
+<link rel="canonical" href="https://www.deepalignment.com/guide">
+
+<!-- Apple Smart App Banner -->
+<meta name="apple-itunes-app" content="app-id=6748240318">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Guide — Resurface: Deep Alignment">
+<meta property="og:description" content="The things the app only says once.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.deepalignment.com/guide">
+<meta property="og:image" content="https://static.wixstatic.com/media/0f0d32_9262e41af4b948a79e77c2b34808c9e4~mv2.png">
+
+<style>
+  :root {
+    --bg-main: #2C4E72;
+    --bg-deep: #1A2F44;
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.5);
+    --accent-green: #5EC269;
+    --accent-teal: #6AD09D;
+    --divider: rgba(255, 255, 255, 0.08);
+    --card-bg: rgba(255, 255, 255, 0.06);
+    --card-border: rgba(255, 255, 255, 0.1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-main);
+    color: var(--text-primary);
+    font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', system-ui, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-header {
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+    background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-main) 100%);
+  }
+
+  .page-header img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 12px rgba(106, 208, 157, 0.3));
+  }
+
+  .page-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.25rem;
+  }
+
+  .page-header .brand {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-teal);
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header .tagline {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 3rem;
+  }
+
+  .section {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .intro {
+    border-color: rgba(106, 208, 157, 0.25);
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--accent-teal);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  h3:first-child { margin-top: 0; }
+
+  p {
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  a {
+    color: var(--accent-teal);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  a:hover {
+    color: var(--accent-green);
+    text-decoration: underline;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--accent-teal);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .faq-item {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .faq-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .faq-question {
+    font-weight: 500;
+    color: var(--accent-teal);
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+  }
+
+  .faq-answer {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+
+  .platform-note {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0;
+  }
+
+  .success-box {
+    background: rgba(94, 194, 105, 0.1);
+    border: 1px solid rgba(94, 194, 105, 0.25);
+    border-radius: 16px;
+    padding: 1.25rem;
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  .success-box p {
+    color: var(--accent-green);
+    margin-bottom: 0;
+  }
+
+  .success-box a {
+    color: var(--accent-green);
+    font-weight: 400;
+  }
+
+  .footer-links {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--divider);
+  }
+
+  .footer-links a {
+    margin: 0 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .footer-links a:hover { color: var(--accent-teal); }
+
+  @media (max-width: 600px) {
+    .container { padding: 1rem 1.25rem 2rem; }
+    .section { padding: 1.25rem; }
+    .footer-links a { display: block; margin: 0.5rem 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+
+</head>
+<body>
+
+<div class="page-header">
+  <img src="https://static.wixstatic.com/media/0f0d32_9262e41af4b948a79e77c2b34808c9e4~mv2.png" alt="Resurface orb">
+  <div class="brand">Resurface: Deep Alignment</div>
+  <h1>Guide</h1>
+  <div class="tagline">The things the app only says once</div>
+</div>
+
+<div class="container">
+
+  <div class="section intro" id="start">
+    <h2>Things you might not have found</h2>
+
+    <p>Resurface comes with a coach. He walks you through the processes, keeps you company inside them, and remembers where you've been. Most of what follows is about him, or about the things he only gets to say once.</p>
+
+    <p style="margin-bottom: 1.25rem;">None of this is required reading. It's what the app doesn't repeat.</p>
+
+    <div class="faq-item">
+      <div class="faq-question">Rest a finger and he waits.</div>
+      <div class="faq-answer">Hold still anywhere on the conversation — not a tap, just a finger resting — and he won't start a new line. Lift it and he goes on. A scroll releases him immediately; only a still finger holds him. He mentions it once, during the tour, and it works wherever he's talking.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Pause and Quit are behind the number.</div>
+      <div class="faq-answer">In a running <a href="#meditation">meditation</a>, tap the counting-down number to bring the controls out.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">The reading countdown has two halves.</div>
+      <div class="faq-answer">One tap hides it for good — and the same spot brings it back, though by then you can't see it. It's on the <a href="#focus-wheel">Focus Wheel</a>.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">The chart of all twenty-two has two hidden doors.</div>
+      <div class="faq-answer">One <a href="#in-a-session">beside where you type</a>, one <a href="#reference-section">in Settings</a>.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Dials confirm if you stop moving.</div>
+      <div class="faq-answer">Hold still for a second and <a href="#in-a-session">the dial</a> offers.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Three hints retire.</div>
+      <div class="faq-answer">The app tells you some things once or twice and then stops. If you arrived later than that, they're below.</div>
+    </div>
+  </div>
+
+  <div class="section" id="the-cork">
+    <h2>The cork</h2>
+    <p>The cork is the first thing you see. Tap it anywhere, any time it's playing, and it goes.</p>
+    <p>The words "(tap to dismiss)" fade in under "Ask and It Is Given" about three and a half seconds in — but only the first three times you see it. After that it plays on and says nothing. The tap still works.</p>
+    <p>It counts showings, not launches. And if you come in from a reminder or from holding the app icon, it doesn't play at all, so that arrival doesn't spend one of your three.</p>
+  </div>
+
+  <div class="section" id="coach-arriving">
+    <h2>The coach arriving</h2>
+    <p>He bounces in and settles into his corner. Tap anywhere while he's moving and he cuts it short — he scoots over and the conversation opens.</p>
+    <p>On the third, sixth and ninth time you've watched the whole arrival, a button appears at the bottom right — "OK.... Settle down." Tap it and the full arrival stops for good; from then on he simply zooms quietly into place. He'll say so: "Got it — I'll keep it chill from here on."</p>
+    <p>If you miss it later, it's in Settings → Preferences → Full Coach Intro.</p>
+  </div>
+
+  <div class="section" id="leaving-the-tour">
+    <h2>Leaving the tour early — and finding your way back</h2>
+    <p>The first time through, the coach shows you around. Somewhere in the second half he mentions, once, that you don't have to stay for all of it — poke him three times in a row and he'll get the message.</p>
+    <p>He means that literally. Three taps on his orb, close together, and a card comes up: go on alone, or stay a while longer. It works on the tour's opening screen, on the main screen, and inside either of the rooms he takes you into.</p>
+    <p>If you go, you haven't shut a door. Settings → Help → Take the Tour Again brings the whole thing back whenever you want it — the next morning, or a year from now.</p>
+    <p>And a replay rewinds the tour, not you. Your name, anything you've saved, what the coach remembers of your recent sessions, the counts the app keeps — all of it stays exactly where it was.</p>
+
+    <h3>Inside a room during the tour</h3>
+    <p>The room's title at the top is a way out. A couple of seconds after you arrive it starts crossfading, slowly, between the room's own name and the words "Resume Tour". That crossfade is the invitation. Tap it and you're back with him.</p>
+  </div>
+
+  <div class="section" id="main-screen">
+    <h2>The main screen</h2>
+    <p>When the tour ends, the three buttons light up one at a time, twice more after that. It's the app pointing at itself. Tap anything and it stops.</p>
+
+    <h3>Nothing is locked-looking, on purpose</h3>
+    <p>There's no padlock anywhere on the list of processes. You aren't meant to shop it. Tap whatever draws you, and if it's one that comes with a subscription the coach will simply say so, and Continue takes you on from there.</p>
+    <p>Not all twenty-two are open yet. They arrive one at a time, as each is finished. Tap one that isn't ready and he'll tell you.</p>
+    <p>If you're near the end of a trial, the words "See what's included" appear under Continue while he's talking about it. Tap anything else and they go.</p>
+
+    <h3>The two icons at the top</h3>
+    <p>The sun or moon switches the whole app between light and dark. The gear is Settings. Once you've saved something, a folder joins them.</p>
+  </div>
+
+  <div class="section" id="get-my-bearings">
+    <h2>Get my bearings</h2>
+    <p>The tall band of colour is the whole control. Tap anywhere on it and the needle moves to where you touched; the name above it changes to match. Nothing on screen says the band is tappable.</p>
+    <p>Press and drag instead of tapping and it scrubs — all twenty-two, one after another, under your finger.</p>
+  </div>
+
+  <div class="section" id="in-a-session">
+    <h2>Inside a session</h2>
+
+    <h3>The wide band of colour under the header</h3>
+    <p>Tap it and the emotional-scale picker comes back, so you can change what you're working from without leaving the session. The small chip beside it carries a chevron; the wide band doesn't, so it's easy to take for decoration. It works the same way.</p>
+
+    <h3>On the full-screen scale</h3>
+    <p>Tap the colour strip, or drag along it — the drag isn't announced anywhere, and it's the better way to feel out where you are. When you've landed, the card reads "[Emotion] it is!" and tapping it confirms.</p>
+
+    <h3>The little rainbow block by the text field</h3>
+    <p>Once you've used the emotional scale in Moving Up the Emotional Scale, a small block of colour appears at the left of where you type. It has no label. Tap it and the full chart of all twenty-two opens, without leaving the conversation.</p>
+
+    <h3>The dials</h3>
+    <p>Tap the middle of the intensity dial to set your first value — a 👆 and the words "Tap to set" sit there waiting, until the first time you touch it, and then never again.</p>
+    <p>To confirm, tap the centre a second time — or just stop moving. Hold still for a second and it offers to confirm on its own, then tucks the offer away again after five. Nothing tells you that holding still will do it.</p>
+    <p>To leave a dial without answering, tap the background anywhere outside it.</p>
+    <p>The truth dial works differently from the intensity dial one screen earlier: no tappable centre, no "Tap to set", just the plus and minus and the ring. If you go hunting for the centre tap there, it isn't that you missed it.</p>
+
+    <p class="platform-note">On Android, the system back gesture works where you'd expect it to.</p>
+  </div>
+
+  <div class="section" id="focus-wheel">
+    <h2>The Focus Wheel</h2>
+    <p>The wheel is meant to be handled, and none of it is labelled.</p>
+    <p>Press near the outer third of the rim and drag in a circle to spin it. It keeps going after you let go and settles onto the nearest position, with a small tick you can feel at each one. Press anywhere inside the rim instead and you drag the whole wheel around the screen. Two fingers pinch to zoom.</p>
+    <p>Once the wheel is complete, its filled segments come alive: tap one and it zooms in and shows you the whole sentence you wrote. Tap it again, or tap anywhere outside, to come back.</p>
+
+    <h3>The countdown on the tooltip</h3>
+    <p>A small number in the top-right counts down the seconds you have to read. Tap it and it goes away — for good, in that session and every one after.</p>
+    <p>Tap the same spot again and it comes back. The number is still there, drawn so it can't be seen, and it still takes the tap.</p>
+  </div>
+
+  <div class="section" id="meditation">
+    <h2>Meditation</h2>
+
+    <h3>Pause and Quit are behind the number</h3>
+    <p>While a meditation is running, tap the counting-down number itself and the controls appear. Tap it again and they go. Nothing says so, and it is the one thing worth knowing before you start.</p>
+    <p>If you've paused, tap anywhere in the conversation — the orb, a bubble, empty space — and it picks up again.</p>
+
+    <h3>The hum</h3>
+    <p>In the timer tray there's a small capsule with a speaker on it, reading On or Off. It's a steady brown-noise hum, and it's meant to be boring — the hum of the air conditioner, not music. It starts off every time.</p>
+    <p>It survives a pause and comes back on when you resume. It doesn't carry across sessions, so it will be off again tomorrow. That's not it forgetting.</p>
+    <p>While the meditation is running, the capsule is behind the same tap on the number as Pause and Quit.</p>
+  </div>
+
+  <div class="section" id="evaluating-dreams">
+    <h2>Evaluating Dreams</h2>
+    <p>To delete a dream, swipe its row sideways. A bin appears behind it, and letting go asks you to confirm — it can't be undone.</p>
+  </div>
+
+  <div class="section" id="your-days-list">
+    <h2>Your day's list</h2>
+    <p>Tap any handwritten line to open it: rewrite it, split it in two if it was really two things, or take it off.</p>
+    <p>The coach says so the first couple of times. From your third session on it shrinks to one line and clears itself after a moment or two, so this is mostly here for later, when it's stopped being said.</p>
+    <p>You can drag the mat around with one finger and pinch to zoom. While he's moving the view himself, it won't move for you.</p>
+  </div>
+
+  <div class="section" id="saved-sessions">
+    <h2>Saved sessions</h2>
+    <p>The folder at the top of the main screen opens what you've kept.</p>
+    <p>Press and hold any row and a menu opens: carry on with that conversation, rename it, export it, or delete it. It's the only press-and-hold in Resurface and nothing marks it.</p>
+    <p>Swipe a row sideways to delete it. Pull the list down to refresh it.</p>
+  </div>
+
+  <div class="section" id="daily-reminders">
+    <h2>Daily reminders</h2>
+
+    <h3>Why the switch won't stay on</h3>
+    <p>The reminder switch reports what's true, not what you asked for. It asks permission at the moment you turn it on — never at launch — and if notifications are switched off for Resurface in your phone's own settings, the switch will show off no matter how many times you turn it on. Nothing on the screen explains this. Turn notifications on for Resurface at the system level and the switch will hold.</p>
+
+    <h3>There are six, and three of them start off</h3>
+    <p>Morning at 8, Check-in at noon and Evening at 8 are on to begin with. Ritual at 7am, Transition at 9am and Bedtime at 10pm exist too, and are off until you turn them on.</p>
+
+    <h3>Changing a time</h3>
+    <p>The time on the right of a row is in the accent colour, and it's a control — tap it. It's only there when that row's own switch is on.</p>
+
+    <h3>More than one Transition</h3>
+    <p>A row reading "Add Transition Reminder" appears under two conditions at once: the Transition slot is on, and you have fewer than ten reminders running in total. Each new one lands an hour after your latest Transition, and they stop at 11pm.</p>
+    <p>The reminders you added yourself carry a small mark to remove them. The six built-in ones don't — they can be switched off, never deleted. And removing one is immediate: no confirmation, nothing to undo.</p>
+  </div>
+
+  <div class="section" id="reference-section">
+    <h2>The Reference section</h2>
+    <p>There's a section in Settings called Reference, holding the chart of all twenty-two emotions and a link to the Vortex meditations.</p>
+    <p>It isn't there when you first look. It appears once you've used the emotional scale, and nothing anywhere tells you that's what brings it. If you went looking for it early and didn't find it, you weren't wrong — it hadn't arrived yet.</p>
+  </div>
+
+  <div class="section" id="ways-in">
+    <h2>Ways in that skip the front door</h2>
+    <p>Tapping a daily reminder takes you straight into Segment Intending, past the cork and past the main screen.</p>
+    <p>Press and hold the app icon on your home screen and three ways in appear: Set Intention, Capture Dream, Meditate.</p>
+    <p>You can ask out loud instead, or build your own shortcut.</p>
+    <p>And there's a widget for the home or lock screen.</p>
+  </div>
+
+  <div class="success-box">
+    <p>Something not working, or not covered here? Email <a href="mailto:support@deepalignment.com">support@deepalignment.com</a>, or see <a href="https://www.deepalignment.com/support">Support</a>.</p>
+  </div>
+
+  <div class="footer-links">
+    <a href="https://www.deepalignment.com">Home</a>
+    <a href="https://www.deepalignment.com/support">Support</a>
+    <a href="https://www.deepalignment.com/privacy-policy">Privacy Policy</a>
+    <a href="https://www.deepalignment.com/user-agreement">User Agreement</a>
+  </div>
+
+</div>
+
+</body>
+</html>
