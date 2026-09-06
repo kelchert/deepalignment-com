@@ -2,3 +2,9 @@
 .DS_Store
 ._*
 .AppleDouble
+
+# Relay landing zone and the deletion holding pen. Never committed:
+# regenerable, duplicates the transcript, timestamped names would make
+# every session a fresh untracked file. Anchored to the repo root.
+/relay/
+/_to_delete/
