@@ -211,7 +211,7 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* App Store Badge */
+  /* Store Badges */
   .badge-link {
     display: inline-block;
     opacity: 0;
@@ -224,6 +224,22 @@
   .badge-link img {
     height: 48px;
     width: auto;
+  }
+
+  /* Both stores, side by side. Apple's SVG is trimmed tight; Google's PNG
+     ships as 646x250 with the artwork only 564x168 inside it (transparent
+     padding baked in, measured 2026-07-29). Ratio 1.488, so 48px Apple ==
+     71px Play optically. Do not "normalise" these two numbers -- the
+     badges will stop matching. */
+  .badge-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .badge-link--play img {
+    height: 71px;
   }
 
   /* ── QUOTE ── */
@@ -473,9 +489,14 @@
   <p class="hero-description">
     Every feeling — even uncomfortable ones — points you toward something you want. With Resurface, you're listening.
   </p>
-  <a href="https://apps.apple.com/app/id6748240318" class="badge-link" target="_blank" rel="noopener">
-    <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store">
-  </a>
+  <div class="badge-row">
+    <a href="https://apps.apple.com/app/id6748240318" class="badge-link" target="_blank" rel="noopener">
+      <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store">
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=com.deepalignment.resurface" class="badge-link badge-link--play" target="_blank" rel="noopener">
+      <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+    </a>
+  </div>
 </section>
 
 <section class="quote-section">
@@ -609,9 +630,14 @@
     Something is important here — otherwise you wouldn't be feeling this way.
   </p>
   <p class="closing-sub">What is it you actually want?</p>
-  <a href="https://apps.apple.com/app/id6748240318" class="badge-link" target="_blank" rel="noopener" style="opacity: 1; animation: none;">
-    <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store">
-  </a>
+  <div class="badge-row">
+    <a href="https://apps.apple.com/app/id6748240318" class="badge-link" target="_blank" rel="noopener" style="opacity: 1; animation: none;">
+      <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store">
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=com.deepalignment.resurface" class="badge-link badge-link--play" target="_blank" rel="noopener" style="opacity: 1; animation: none;">
+      <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+    </a>
+  </div>
 </section>
 
 <footer>
