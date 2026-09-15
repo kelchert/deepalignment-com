@@ -23,8 +23,12 @@ scope than this repo's workflow rituals. Do not flatten without revisiting that 
 ## What this repo is
 The static site served at deepalignment.com. Plain HTML/CSS (no build step, no framework),
 deployed by Netlify from the repo root (`netlify.toml` → `publish = "."`, `pretty_urls = true`).
-Pages: `index.html` (home), `faq/`, `support/`, `privacy-policy/`; assets in `images/`; plus
-`sitemap.xml`, `robots.txt`, and the Google Search Console verification file. og:image and
+Pages: `index.html` (home), `faq/`, `support/`, `privacy-policy/`, `user-agreement/`, `guide/`;
+assets in `images/`; plus `sitemap.xml`, `robots.txt`, and the Google Search Console
+verification file. Unlinked (absent from `index.html` and `sitemap.xml`): `guide/`, and the
+`movingup/` subsite, which is `movingup/user-agreement/` and `movingup/privacy-policy/` for the
+Moving Up app. **`/movingup/` itself 404s BY DESIGN.** It is a two-page subsite with no
+landing page, following the `/guide` precedent. Do not file that 404 as a bug. og:image and
 metadata are hand-maintained per page and tuned for LinkedIn (see Decisions Log). No email-
 capture form is live yet — the `da-android-notify` Netlify Form is the first tracked build
 (see `docs/next_session.md`).
