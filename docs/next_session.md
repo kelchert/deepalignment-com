@@ -3,21 +3,23 @@
 Living handoff. Read at session start, update at session close. This repo is a sibling under
 the [RDA] seat — keep this current so [RDA]'s rollup (→ DAC) can read it.
 
-## Human status — deepalignment-com (seat's read, as-of 2026-07-14)
-Onboarded into the doc-architecture today as a governed sibling repo (repo-local CLAUDE.md +
-this handoff), following the FocusWheel-android precedent — the site had been taking commits
-ad hoc with no spine. The site is live and stable, migrated off Wix to this self-hosted repo;
-og:image is LinkedIn-tuned. The one active build ahead is the **da-android-notify** email-
-capture form — the deepalignment.com twin of FocusWheel's Android-launch form — specced and
-locked, not yet built. It's collect-only (no ESP wiring) and carries a one-time post-merge
-form check once it lands.
+## Human status — deepalignment-com (seat's read, as-of 2026-09-14)
+The site is live and stable, and shows both store badges (App Store and Google Play). Most
+recent: Moving Up's User Agreement and Privacy Policy went live 2026-09-13 at
+deepalignment.com/movingup/. That is a self-contained legal subsite for the Moving Up app and
+is not linked from the main site. Nothing is being built right now. **One ruling is owed to
+Kenn:** retire or repurpose the da-android-notify form. It was meant to announce the Android
+launch, and Android shipped 2026-09-09. Small chores are also owed: gitignore `.claude/`, and
+the www-to-apex canonical fix (ruled 2026-09-14; its own pass, edit list goes to Kenn first).
 
-## Current state (compact) — refreshed 2026-09-09 session close
+## Current state (compact) — refreshed 2026-09-14 session close
 `main`, in sync with `origin`. The site is live and stable; SEO/OG/JSON-LD
 metadata hand-maintained per page; Netlify serves from repo root (`publish = "."`,
 `pretty_urls = true`). Pages: `/`, `/faq`, `/support`, `/privacy-policy`, **`/guide`**
-(`9c1bb84`, 2026-09-01), **`/user-agreement`**. No Netlify Form present yet
-(da-android-notify is the first).
+(`9c1bb84`, 2026-09-01), **`/user-agreement`**. Unlinked subsite (not in `index.html` or
+`sitemap.xml`, following the `/guide` precedent): **`/movingup/user-agreement`**,
+**`/movingup/privacy-policy`** (`62736f3`, 2026-09-13). `/movingup/` has no index page and
+404s by design. No Netlify Form present yet (da-android-notify would be the first).
 
 **App context — Resurface-android vC7 / 1.0.6 is PUBLISHED AND LIVE on Google Play as of
 2026-09-09 ~11:11 AM ET** — 100% rollout, 177 countries. Public listing verified: title
@@ -27,9 +29,27 @@ metadata hand-maintained per page; Netlify serves from repo root (`publish = "."
 the distinction held exactly as recorded, and this is now the record of how it shipped rather
 than a caution about what "approved" means. That same distinction remains the release trigger
 for focuswheelapp-com's held `feat/google-play-badge` branch.
-**Resurface iOS 3.8 (43) was SUBMITTED 2026-09-08 and remains IN REVIEW** — unchanged.
+**Resurface iOS 3.8 (43) was SUBMITTED 2026-09-08 and was IN REVIEW as last recorded here
+(2026-09-09).** This close did NOT re-check it; the iOS seat's own docs are the source.
 
 ## Shipped (durable milestones, most recent first)
+- **Moving Up legal subsite: `/movingup/user-agreement` and `/movingup/privacy-policy`**
+  (`62736f3`, 2026-09-13). These are legal pages for *Resurface: Moving Up the Emotional
+  Scale*: `[MU]`-seat content landing in this `[RDA]` repo. They follow the `/guide`
+  precedent: absent from `index.html` and `sitemap.xml`, with their own two-link footer. The
+  only links off the subsite are the Apple EULA and Google Play ToS references (mailto
+  excluded). The text was re-scoped clause-by-clause from focuswheelapp.com's live legal
+  pages (UA 5 changes; PP 13 changes plus 1 drop; no clause authored). The structure was
+  ported from this repo's root legal pages, with CSS byte-identical. Two approved deviations
+  from port-first: the new privacy page closes the `.container` div its donor leaves open,
+  and the contact box's "deepalignment.com" is plain text, not a link. The contact address
+  is `support@deepalignment.com`, per Kenn's ruling, so a personal address is not newly
+  published on this domain. Design and spec came from Cowork, session
+  `session_011oSyN4HjEx6JMdXijonH1w`.
+  **Verified live** 2026-09-13: both pages end at 200, and live bytes == HEAD for each. All
+  six existing routes (`/`, `/faq`, `/support`, `/privacy-policy`, `/user-agreement`,
+  `/guide`) were sha256-identical to a pre-deploy baseline. Footer navigation was followed
+  live in both directions, and `/movingup/` returns 404 (the pass condition).
 - **Google Play badge added to both CTAs — the site now tells the two-platform story**
   (`b160223`, 2026-09-09). Resurface: Deep Alignment Android 1.0.6 went live on Google Play
   the same day; `index.html` had been iOS-only. Adds the Play badge beside the App Store
@@ -94,6 +114,22 @@ for focuswheelapp-com's held `feat/google-play-badge` branch.
   empty and `git check-ignore .claude` reports NOT IGNORED. Fix is one line in `.gitignore`
   matching the existing anchored shape (`/relay/`, `/_to_delete/` from `3053b25`). Not done
   in `b160223` — that commit was scoped to `index.html` alone.
+- **www vs apex: every canonical names a host that is never served. Site-wide, pre-existing.
+  RULED BY KENN 2026-09-14: A BUG, NOT A PARKED THREAD.** Every
+  `https://www.deepalignment.com/<path>` returns 301 to `https://deepalignment.com/<path>`.
+  `pretty_urls` then returns 301 to the trailing-slash form, so each page is
+  **301 → 301 → 200**. This was observed live 2026-09-13 on
+  `/user-agreement`, `/guide`, and both `/movingup/` pages, and was surfaced (not caused) by
+  `62736f3`'s live verify. Meanwhile every `<link rel="canonical">` and `og:url` in the tree
+  names `https://www.deepalignment.com/...` without a trailing slash (verified 2026-09-14
+  across all 8 pages), and `sitemap.xml` has 5 `www.deepalignment.com` hits. **THE RULING:
+  canonicalize on the apex with the trailing slash.** Canonicals, `og:url` and `sitemap.xml`
+  all name `https://deepalignment.com/<path>/`, the form that actually returns 200.
+  **NOT APPLIED.** It is its own pass, and Kenn sees the per-file edit list before it runs.
+- **Root `privacy-policy/index.html` never closes its `.container` div.** This is already
+  filed in the hub (`OUTSTANDING.md`, the `[RDA] deepalignment-com` row). It is noted here
+  because `62736f3` fixed the same defect in its `/movingup/` copy only. The root page is
+  untouched and still has the defect.
 
 ## Parked
 - OG/preview and copy are settled; no other design work queued.
